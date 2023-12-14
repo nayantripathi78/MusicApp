@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 
 class MyAdapter(val context: Activity, private val dataList: List<Data>) :
     RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
@@ -25,6 +26,9 @@ class MyAdapter(val context: Activity, private val dataList: List<Data>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentData = dataList[position]
+
+        Picasso.get().load(currentData.album.cover).into(holder.image);
+
         holder.title.text = currentData.title
 
         val mediaPlayer = MediaPlayer.create(context, currentData.preview.toUri())
